@@ -18,7 +18,7 @@ Open **Settings > Notifications > Telegram**, turn on **Allow Notifications**, a
 
 Open your new bot in Telegram and press **Start** during pairing. Then put Telegram in the background: **lock your iPhone** to test Lock Screen alerts, or **go to the Home Screen** to test Banners. Have your agent send the test.
 
-Expect **🧪 Test from Oura Stress Alerts. Telegram works.** Confirm that it appears on the lock screen or as an iOS banner while Telegram is in the background. An in-app Telegram banner or a message on the computer does not pass this check. Every stress alert reads **🔴 Oura recorded high stress**, as in the [README demo](README.md).
+Expect **🧪 Test from Oura Stress Alerts. Telegram works.** Confirm that it appears on the lock screen or as an iOS banner while Telegram is in the background. An in-app Telegram banner or a message on the computer does not pass this check. Every stress alert reads only **🔴 Oura recorded high stress**. The notification in the [README demo](docs/DEMOS.md) also shows a second line from an earlier message format.
 
 ## After setup
 
@@ -194,7 +194,7 @@ python3 oura_stress_telegram.py settings --min-increase 15
 
 - Your Telegram bot token, Oura app keys and Oura login are saved in `~/.config/oura-stress-telegram/` on Mac/Linux or `%LOCALAPPDATA%\oura-stress-telegram` on Windows. Unix files use private permissions; Windows access is restricted to your user, SYSTEM and local administrators.
 - The program only asks Oura for **daily** data and only reads the daily stress summary.
-- Telegram messages pass through Telegram's servers like any bot message. Alerts report recorded high stress; later alerts also include stress minutes. Problem notices also include the error and the command to run, which shows folder paths on your computer.
+- Telegram messages pass through Telegram's servers like any bot message. Alerts say only that Oura recorded high stress, with no stress minutes. Problem notices also include the error and the command to run, which shows folder paths on your computer.
 - To remove everything: run `uninstall --delete-data`, delete your application at [developer.ouraring.com/applications](https://developer.ouraring.com/applications), and delete the bot by sending `/deletebot` to @BotFather.
 
 ## Project status
@@ -214,8 +214,8 @@ shows a full phone walkthrough using that notification and real Home Screen and
 Oura captures. The lock screen was cleaned, covered wallpaper was reconstructed,
 Home Screen calendar titles were made generic, and interactions and transitions
 were simulated. The calendar layout, event times and app notification counts remain.
-The notification headline was shortened to "Oura recorded high stress" to match
-the short headline used after a zero daily baseline. A later demo edit uses example
+The notification headline was shortened to "Oura recorded high stress", the
+wording every alert now uses. A later demo edit uses example
 graph points and matching 15-minute totals to show the day's first high-stress
 period. Calendar titles are fictional. These edits do not change actual Oura data.
 The walkthrough compresses the time between captures.
