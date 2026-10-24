@@ -97,11 +97,14 @@ each visible tap, both app transitions and the loop seam.
 
 - [MP4 walkthrough](images/demo-walkthrough.mp4): H.264, yuv420p, 652 x 1380,
   15 fps, 259 frames, 17.266667 seconds, no audio, fast-start playback.
-- [Social preview](images/social-preview.png): 1280 x 640, 167,488 bytes, intended
+- [Social preview](images/social-preview.png): 1280 x 640, 110,329 bytes, intended
   for the GitHub repository link preview. It combines the existing generated ring
-  avatar with the [walkthrough notification crop](images/walkthrough/notification.png),
-  which shows Oura Stress Alerts. It is labeled unofficial and an edited
-  demo. No new Oura UI or reading was generated.
+  avatar with a [rendered one-line alert](images/walkthrough/notification-headline.png)
+  showing the current text, "🔴 Oura recorded high stress", from Oura Stress Alerts.
+  [render_notification_headline.py](images/render_notification_headline.py) draws it
+  in iOS lock-screen style, using the avatar, Telegram badge and red circle cropped
+  from the walkthrough notification and a blurred crop of the lock-screen wallpaper.
+  It is labeled unofficial. No new Oura UI or reading was generated.
 
 The current MP4 and GIF use the same source frames and 4.67-second clean notification
 hold, with dark outer margins in the MP4. The tiny duration difference comes from
@@ -140,13 +143,13 @@ Pass the two font files as arguments: Arial.ttf and Arial Bold.ttf. The renderer
 pins their SHA-256 hashes to `525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9`
 and `d72db21f9242aedd6b917d8549ad5921766b24d5f8d0becfda2ff4c620b3c2e0` respectively.
 The original fonts are not bundled; the committed outlined SVG is the portable
-render source. The card uses walkthrough/notification.png, which shows the
-Oura Stress Alerts notification from the demo. None of these development dependencies is needed to run the tool.
+render source. The card uses walkthrough/notification-headline.png, the rendered
+one-line Oura Stress Alerts notification. None of these development dependencies is needed to run the tool.
 
 Current media and original release asset SHA-256:
 
 ```text
-social-preview.png     9538b580bc23738bdd834d2cfb4b7da90256c64051146bf89aea83f2b1ab4836
+social-preview.png     02ac375dd83add59689babeb21b44e0cd6d73ac7961cdbd27e06390029ca55c8
 demo-walkthrough.gif   48337b5dcbb8613fbc95a6e6faecc78e1beb0bff6631ce5d9ab4a16abb6cc139
 demo-first-stress.mp4 (also the repo docs/images/demo-walkthrough.mp4)
                       853199ca747f30595eeca5cbaf268bb44fc5f893fb5b14d6c22b528ed4a9425a
