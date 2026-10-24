@@ -944,9 +944,7 @@ def plan_alert(stress_high: Optional[int], state: dict, today: str,
         return None, baseline
     total = minutes(stress_high)
     if baseline == 0:
-        message = ("\U0001F534 <b>Oura recorded high stress</b>\n\n"
-                   "Your body has been showing physiological stress. If it fits, take a "
-                   "short break, a few slow breaths, or a walk.")
+        message = "\U0001F534 <b>Oura recorded high stress</b>"
     else:
         added = minutes(stress_high - baseline)
         message = (f"\U0001F534 <b>More high stress recorded:</b> +{added} min "

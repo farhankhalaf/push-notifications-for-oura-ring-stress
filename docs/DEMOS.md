@@ -35,8 +35,9 @@ short-headline wording. The Home Screen and Oura captures retain their 14:12 and
 14:15 clocks. This edited sequence compresses separate captures; their times and
 the example graph are not a measurement of detection or delivery delay. The demo
 does not imply an instant Oura reading or alert.
-The original preview spacing was retained, so the gap below the headline is wider
-and less body text is visible than a newly rendered alert may show.
+The capture also shows a second line of body text from the earlier message format.
+Current first alerts send only the headline, "🔴 Oura recorded high stress", so a new
+alert shows that line alone.
 
 The empty lock screen was made from the same screenshot by removing notification
 cards and widgets and filling the covered wallpaper with image-generation cleanup.
