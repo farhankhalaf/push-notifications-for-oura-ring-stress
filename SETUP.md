@@ -18,7 +18,7 @@ Open **Settings > Notifications > Telegram**, turn on **Allow Notifications**, a
 
 Open your new bot in Telegram and press **Start** during pairing. Then put Telegram in the background: **lock your iPhone** to test Lock Screen alerts, or **go to the Home Screen** to test Banners. Have your agent send the test.
 
-Expect **🧪 Test from Oura Stress Alerts. Telegram works.** Confirm that it appears on the lock screen or as an iOS banner while Telegram is in the background. An in-app Telegram banner or a message on the computer does not pass this check. The [README demo](README.md) shows the short stress headline used after a zero daily baseline. With a positive baseline, alerts say **More high stress recorded** and include added minutes, including the first alert after a mid-day setup.
+Expect **🧪 Test from Oura Stress Alerts. Telegram works.** Confirm that it appears on the lock screen or as an iOS banner while Telegram is in the background. An in-app Telegram banner or a message on the computer does not pass this check. Every stress alert reads **🔴 Oura recorded high stress**, as in the [README demo](README.md).
 
 ## After setup
 

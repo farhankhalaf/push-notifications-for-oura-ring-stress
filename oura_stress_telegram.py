@@ -903,11 +903,6 @@ class OuraClient:
 # The alert rule
 # --------------------------------------------------------------------------
 
-def minutes(seconds: int) -> int:
-    """Whole minutes, never shown as 0 for a real increase."""
-    return max(1, seconds // 60)
-
-
 def baseline_initialized(state: dict) -> bool:
     """Recognize new state explicitly and preserve established pre-marker installs."""
     if "baseline_initialized" in state:
@@ -942,14 +937,7 @@ def plan_alert(stress_high: Optional[int], state: dict, today: str,
         return None, baseline
     if stress_high - baseline < max(0, int(min_increase_minutes)) * 60:
         return None, baseline
-    total = minutes(stress_high)
-    if baseline == 0:
-        message = "\U0001F534 <b>Oura recorded high stress</b>"
-    else:
-        added = minutes(stress_high - baseline)
-        message = (f"\U0001F534 <b>More high stress recorded:</b> +{added} min "
-                   f"({total} min today).\n\nConsider stepping away for a few minutes.")
-    return message, baseline
+    return "\U0001F534 <b>Oura recorded high stress</b>", baseline
 
 
 def parse_hhmm(value: str) -> dt.time:

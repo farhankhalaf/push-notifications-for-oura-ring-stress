@@ -129,11 +129,11 @@ class AlertRuleTests(Base):
         self.assertEqual((state["last_stress_high"], state["last_date"]), (900, "2026-10-09"))
         self.assertEqual(state["last_data_day"], "2026-10-09")
 
-    def test_later_increase_sends_delta_and_total(self):
+    def test_later_increase_sends_same_headline(self):
         self.set_state(last_date="2026-10-09", last_stress_high=900)
         self.http.stress = [(200, stress_body(today_item(1500)))]
         self.check()
-        self.assertIn("+10 min (25 min today)", self.http.sent[0])
+        self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
         self.assertEqual(self.state()["last_stress_high"], 1500)
 
     def test_no_increase_sends_nothing(self):
@@ -156,7 +156,7 @@ class AlertRuleTests(Base):
         self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
         self.assertEqual(self.state()["last_stress_high"], 600)
 
-    def test_sub_minute_values_round_up_to_one(self):
+    def test_sub_minute_increases_still_alert(self):
         self.set_state(baseline_initialized=True)
         self.http.stress = [(200, stress_body(today_item(30)))]
         self.check()
@@ -165,7 +165,7 @@ class AlertRuleTests(Base):
         self.set_state(last_date="2026-10-09", last_stress_high=60)
         self.http.stress = [(200, stress_body(today_item(90)))]
         self.check()
-        self.assertIn("+1 min (1 min today)", self.http.sent[1])
+        self.assertEqual(self.http.sent[1], "\U0001F534 <b>Oura recorded high stress</b>")
 
     def test_min_increase_setting_batches_small_increases(self):
         self.set_state(baseline_initialized=True)
@@ -236,7 +236,7 @@ class InitialBaselineTests(Base):
             self.assertEqual(len(self.http.sent), count)
             self.assertEqual(self.state()["last_stress_high"], seconds)
             self.assertIs(self.state()["baseline_initialized"], True)
-        self.assertIn("+10 min (55 min today)", self.http.sent[0])
+        self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
 
     def test_verification_seeds_silently_during_quiet_hours(self):
         self.http.stress = [(200, stress_body(today_item(900)))]
@@ -330,7 +330,7 @@ class InitialBaselineTests(Base):
         self.assertEqual(self.state()["last_stress_high"], 900)
         self.http.stress = [(200, stress_body(today_item(1200)))]
         ost.run_check(self.paths, now=NOON, verify=True)
-        self.assertIn("+5 min", self.http.sent[0])
+        self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
 
     def test_only_literal_true_initializes_an_explicit_marker(self):
         for value in (False, None, 0, 1, "true", [], {}):
