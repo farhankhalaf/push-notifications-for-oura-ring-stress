@@ -53,12 +53,12 @@ def main():
     regular, bold = fonts
     text = lambda label, x, y, size, color="#f4f4ef", heavy=False: outlined(
         bold if heavy else regular, label, x, y, size, color)
-    notice = data(IMAGE_DIR / "walkthrough" / "notification.png", "image/png")
+    notice = data(IMAGE_DIR / "walkthrough" / "notification-headline.png", "image/png")
     avatar = data(ROOT / "bot-avatar.jpg", "image/jpeg")
     svg = '''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1280" height="640" viewBox="0 0 1280 640">
 <title>Oura Stress Alerts</title>
-<desc>Oura Stress Alerts: free and open source Telegram alerts when Oura records more high stress. Unofficial and not affiliated with Oura. Edited iPhone notification demo.</desc>
-<defs><clipPath id="avatar"><circle cx="94" cy="99" r="34"/></clipPath><clipPath id="notice"><rect x="700" y="224" width="522" height="228" rx="38"/></clipPath></defs>
+<desc>Oura Stress Alerts: free and open source Telegram alerts when Oura records more high stress. Unofficial and not affiliated with Oura. The notification is a rendered example of the current alert.</desc>
+<defs><clipPath id="avatar"><circle cx="94" cy="99" r="34"/></clipPath><clipPath id="notice"><rect x="700" y="288" width="522" height="100" rx="21"/></clipPath></defs>
 <rect width="1280" height="640" fill="#0d171b"/>
 <circle cx="1060" cy="325" r="290" fill="#132126"/>
 <path d="M666 112V528" stroke="#334249" stroke-width="1"/>
@@ -70,8 +70,7 @@ def main():
 %s
 %s
 %s
-<image x="700" y="224" width="522" height="228" xlink:href="%s" clip-path="url(#notice)"/>
-%s
+<image x="700" y="288" width="522" height="100" xlink:href="%s" clip-path="url(#notice)"/>
 %s
 </svg>''' % (
         avatar,
@@ -83,8 +82,7 @@ def main():
         text("UNOFFICIAL · NOT AFFILIATED WITH OURA", 63, 539, 15, "#9bb8ae"),
         text("farhankhalaf/push-notifications-for-oura-ring-stress", 63, 577, 21, "#dce7e1"),
         notice,
-        text("DELIVERED THROUGH TELEGRAM", 738, 184, 18, "#b9d5c9", True),
-        text("Edited iPhone demo", 882, 494, 16, "#a0b4b3"),
+        text("DELIVERED THROUGH TELEGRAM", 738, 248, 18, "#b9d5c9", True),
     )
     (IMAGE_DIR / "social-preview.svg").write_text(svg, encoding="utf-8")
 
