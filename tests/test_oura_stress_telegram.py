@@ -123,8 +123,7 @@ class AlertRuleTests(Base):
         self.http.stress = [(200, stress_body(today_item(900)))]
         self.assertEqual(self.check(), 0)
         self.assertEqual(len(self.http.sent), 1)
-        self.assertEqual(self.http.sent[0].split("\n\n")[0],
-                         "\U0001F534 <b>Oura recorded high stress</b>")
+        self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
         self.assertNotIn("min today", self.http.sent[0])
         state = self.state()
         self.assertEqual((state["last_stress_high"], state["last_date"]), (900, "2026-10-09"))
@@ -154,14 +153,14 @@ class AlertRuleTests(Base):
         self.set_state(last_date="2026-10-08", last_stress_high=3000)
         self.http.stress = [(200, stress_body(today_item(600)))]
         self.check()
-        self.assertIn("Oura recorded high stress</b>\n\n", self.http.sent[0])
+        self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
         self.assertEqual(self.state()["last_stress_high"], 600)
 
     def test_sub_minute_values_round_up_to_one(self):
         self.set_state(baseline_initialized=True)
         self.http.stress = [(200, stress_body(today_item(30)))]
         self.check()
-        self.assertIn("Oura recorded high stress</b>\n\n", self.http.sent[0])
+        self.assertEqual(self.http.sent[0], "\U0001F534 <b>Oura recorded high stress</b>")
         self.assertEqual(self.state()["last_stress_high"], 30)
         self.set_state(last_date="2026-10-09", last_stress_high=60)
         self.http.stress = [(200, stress_body(today_item(90)))]
