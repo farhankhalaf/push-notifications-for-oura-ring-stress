@@ -10,9 +10,9 @@ GitHub URL and say "Set this up", then receive a test notification on their phon
 with automatic checks running. A working API call or a Telegram Web receipt is
 not sufficient for this acceptance check.
 
-- Start from the public README and its exact copyable agent request, including
-  "Follow its AGENTS.md", on a fresh account or clean machine. Follow the guide
-  without unexplained developer steps.
+- Start from the public README and its exact copyable agent request, on a fresh
+  account or clean machine. The request does not name AGENTS.md, so confirm the
+  agent finds and follows it. Follow the guide without unexplained developer steps.
 - Confirm the agent handles downloading, Python selection, setup and verification,
   including a path that does not require Git.
 - Record where the person needed account sign-in, consent or private key entry,
